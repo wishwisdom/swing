@@ -11,8 +11,11 @@ public class Status {
 	public final static String SECOUNTPANEL = "second";
 	public final static String DETAILPANEL = "DetailView";
 	
+	public final static String PREPANEL = "PreviousPanel";
+	public final static String MEXTPANEL = "NextPanel";
+	
 	public final static String USER = "user";
-	public final static Location LOCTION = new Location();
+	public final static String LOCTION = "viewLocation";
 	//public final static int WRITEPPANEL = 3;
 	
 	private static Map<String, Object> values = new HashMap<String,Object>();

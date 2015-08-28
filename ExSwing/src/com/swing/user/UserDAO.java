@@ -1,12 +1,8 @@
 package com.swing.user;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import com.swing.Board.Board;
 import com.swing.ex.FileRelated;
 import com.swing.ex.Status;
 
@@ -26,16 +22,17 @@ public class UserDAO {
 		// userList에 user의 정보를 모두 답는다.
 		// File을 통해 Board를 가지고 온다.
 		userMap = new HashMap<String, User>();
-		
-		String[] users = FileRelated.openFile(String.valueOf(Status.get("TablePath"))+"\\users.txt");
-		
-		for(String user : users){
+
+		String[] users = FileRelated.openFile(String.valueOf(Status
+				.get("TablePath")) + "\\users.txt");
+
+		for (String user : users) {
 			String[] split = user.split(" ");
-			//User(String id, String pwd, String name, String email)
-			userMap.put(split[0],new User(split[0],split[1],split[2],split[3]));
+			// User(String id, String pwd, String name, String email)
+			userMap.put(split[0], new User(split[0], split[1], split[2],
+					split[3]));
 		}
-		
-		
+
 	}
 
 	public boolean hasUser(String userID) {
@@ -52,7 +49,8 @@ public class UserDAO {
 
 	public boolean insertUser(User user) {
 		// User가 존재할 시, false 반환
-		return ( hasUser(user.getId()) ) ? false : (userMap.put(user.getId(), user) == null) ;
+		return (hasUser(user.getId())) ? false : (userMap.put(user.getId(),
+				user) == null);
 	}
 
 	/*
@@ -61,14 +59,14 @@ public class UserDAO {
 	 * @return User의 Object Array를 반환해준다.
 	 */
 
-	public User[] getUsers(){
+	public User[] getUsers() {
 
 		if (userMap.size() == 0) {
 			return null;
 		}
 		User[] users = new User[userMap.size()];
 
-		System.arraycopy(userMap, 0, users, 0, users.length);
+		userMap.values().toArray(users);
 
 		return users;
 	}

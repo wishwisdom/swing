@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -28,6 +29,9 @@ public class FileRelated{
 		saveImage("C:\\kosta\\JavaBasic\\GIT_INIT\\ExSwing\\img\\yeonah2.jpg", "copYeonah.jpg");
 	}*/
 	
+	public static ImageIcon openCircleImage(String imageName, int width, int height){
+		return ImageManipulate.getCircleImageIcon(imageName, width, height);
+	}
 	public static ImageIcon openImage(String imageName, int width, int height){
 		return ImageManipulate.getImageIcon(imageName, width, height);
 	}
@@ -69,7 +73,7 @@ public class FileRelated{
 		if(filename.equals("boards.txt")){
 			BoardDAO bDao = BoardDAO.getInstance();
 			try {
-				write = new BufferedWriter(new FileWriter(String.valueOf(Status.get("TablePath ")+"\\boards.txt")));
+				write = new BufferedWriter(new FileWriter(String.valueOf(Status.get("TablePath"))+"\\boards.txt"));
 				Board[] boardList = bDao.getBoards();
 				for(Board b : boardList){
 					write.write(b.toString());
@@ -83,8 +87,9 @@ public class FileRelated{
 		}else{
 			UserDAO uDao = UserDAO.getInstance();
 			try {
-				write = new BufferedWriter(new FileWriter(String.valueOf(Status.get("TablePath ")+"\\boards.txt")));
+				write = new BufferedWriter(new FileWriter(String.valueOf(Status.get("TablePath"))+"\\users.txt"));
 				User[] userList = uDao.getUsers();
+				
 				for(User b : userList){
 					write.write(b.toString());
 				}
@@ -136,6 +141,12 @@ public class FileRelated{
 		return result;
 	}
 	
+	/*
+	 * Show a JFileChooser
+	 * @param cmp is a place where it will show up.
+	 * 
+	 * @return String  return a path which chooses file. Not if choosing, it returns "CANCEL" String.
+	 */
 	
 	public static String openFile(Component cmp){
 		JFileChooser fc = new JFileChooser();
@@ -149,7 +160,7 @@ public class FileRelated{
 			yourFolder = fc.getSelectedFile().getAbsoluteFile();
 			path = yourFolder.getAbsolutePath();
 		}else{
-			path = "";
+			path = "CANCEL";
 		}
 		
 		return path;

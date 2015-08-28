@@ -17,36 +17,46 @@ public class FirstPanel extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = -6844978365336513658L;
 	JPanel self = this;
-	JPanel nextPanel = null;
+	LocationPanel nextPanel = null;
 	JFrame main;
-	Dimension headDF = new Dimension(650, 250);
+	Dimension dfHead = new Dimension(650, 250);
 	Dimension btnDF = new Dimension(200, 100);
 
-	public FirstPanel(JFrame main) {
-		this.main = main;
-		setLayout(new FlowLayout());
-
+	public void initTopImage(){
 		JPanel jpHeadLine = new JPanel();
 		jpHeadLine.setLayout(new BorderLayout());
-		jpHeadLine.setPreferredSize(headDF);
+		jpHeadLine.setPreferredSize(dfHead);
 
-		JButton jlHHH = new JButton("hhh");
-
-		jpHeadLine.add(jlHHH, BorderLayout.CENTER);
+		//////-------瘤开 持扁----
+		
+		JLabel lblTop = new JLabel();
+		lblTop.setIcon(FileRelated.openImage(String.valueOf(Status.get("MainImage")), dfHead.width, dfHead.height));
+		
+		////-------瘤开 持扁----
+		
+		jpHeadLine.add(lblTop, BorderLayout.CENTER);
 
 		add(jpHeadLine);
 
+	}
+	public FirstPanel(JFrame main) {
+		this.main = main;
+		setLayout(new FlowLayout());
+		
+		initTopImage();
+		
 		// GridLayout( rows, cols, hgap, vgap)
 		JPanel jpButton = new JPanel(new GridLayout(2, 3, 10, 10));
+		
 		JButton[] btnLocation = new JButton[6];
-		for (int i = 0; i < btnLocation.length; i++) {
-			JButton jbButton = new JButton("Button" + i);
+		for (String btnName : Location.location) {
+			JButton jbButton = new JButton(btnName);
 			jbButton.setPreferredSize(btnDF);
 			// jbButton.setMargin(new Insets(10, 10, 10, 10));
 			jbButton.addActionListener(this);
 			jpButton.add(jbButton);
-
 		}
+		
 		add(jpButton);
 		add(new Advertisemnet());
 	}
@@ -59,12 +69,16 @@ public class FirstPanel extends JPanel implements ActionListener {
 
 			self.setVisible(false);
 			main.remove(self);
-
-			nextPanel = (JPanel) Status.get("second");
-
-			main.add(nextPanel, BorderLayout.CENTER);
+			
+			////           Location 持扁
+			Status.add(Status.LOCTION, ((JButton)e.getSource()).getText());
+			System.out.println("Button: "+((JButton)e.getSource()).getText());
+			////nextPanel = (LocationPanel) Status.get("second");
+			
+			main.add(new LocationPanel(main), BorderLayout.CENTER);
+			/*nextPanel.init();
 			nextPanel.setVisible(true);
-
+			nextPanel.repaint();*/
 			main.repaint();
 		} else {
 			JDialog frame = new JDialog(main, "Not Logined", true);

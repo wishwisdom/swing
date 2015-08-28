@@ -25,8 +25,8 @@ public class Board {
 		this.boardNum = boardNum;
 	}
 	
-	public Board(int boardNum, String author, String imagepath, String content, String location, 
-			int goodCounts, int badCounts, String makeTime, int readingCounts){
+	public Board(int boardNum, String author, String imagepath, String location, 
+			int goodCounts, int badCounts, String makeTime, int readingCounts, String content){
 		this.boardNum = boardNum;
 		this.author = author;
 		this.imagePath = imagepath;
@@ -100,7 +100,7 @@ public class Board {
 	
 	@Override
 	public String toString(){
-		return ""+boardNum+" " + author +" "+ imagePath+" "+content + " " + location +" "+goodCounts
-				+" " + badCounts +" "+makeTime+" "+ readingCounts;
+		return ""+boardNum+" " + author +" "+ imagePath+" " + location +" "+goodCounts
+				+" " + badCounts +" "+makeTime+" "+ readingCounts+content + " "+ content;
 	}
 }

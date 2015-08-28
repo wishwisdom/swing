@@ -12,42 +12,10 @@ import com.swing.ex.Status;
  * Board를 불러오는 class
  */
 
-//board num
-	/*
-	 *  int boardNum;
-	 *  String author;
-	 *  String imagePath;
-	 *  String content;
-	 *  int goodCounts;
-	 *  int badCounts;
-	 *  String makeTime;
-	 *  int readingCounts;
-	 */
-
 public class BoardDAO {
 	/*
 	 * Create Board Data
 	 */
-	/*public static void main(String[] args){
-		
-		String[] stat = FileRelated.openFile("./properties/config.ini");
-		for(String s : stat){
-			String[] split = s.split(" ");
-			if(split[0].equals("isLogin")){
-				Status.add(split[0], false);
-			}else
-				Status.add(split[0], split[1]);
-		}
-		
-		
-		BoardDAO b = new BoardDAO();
-		
-		Board[] my = b.getMyBoard("test");
-		for(Board ab : my){
-			System.out.println(ab);
-		}
-		System.out.println(Status.get("isLogin"));
-	}*/
 	
 	private List<Board> boards;
 	private List<Board> myBoard;
@@ -82,11 +50,9 @@ public class BoardDAO {
 		
 		for(String b : board){
 			String[] split = b.split("==");
-			/*int boardNum, String author, String imagepath, String content, String location, 
-			int goodCounts, int badCounts, String makeTime, int readingCounts*/
-			//System.out.println(Arrays.toString(split));
-			boards.add(new Board(Integer.parseInt(split[0]),split[1],split[2],split[3],split[4],
-					Integer.parseInt(split[5]),Integer.parseInt(split[6]),split[7],Integer.parseInt(split[8])));
+			
+			boards.add(new Board(Integer.parseInt(split[0]),split[1],split[2],split[3],Integer.parseInt(split[4]),
+					Integer.parseInt(split[5]),split[6],Integer.parseInt(split[7]),split[8]));
 		}
 		
 		
@@ -136,6 +102,7 @@ public class BoardDAO {
 	public boolean inesrt(Board t) {
 		//Board를 저장한다
 		boards.add(t);
+		myBoard.add(t);
 		
 		return true;
 	}
@@ -173,7 +140,7 @@ public class BoardDAO {
 		}
 		boards.remove(rmBoard);
 		myBoard.remove(rmBoard);
-		System.out.println("BoardDAO Deleted - " + myBoard.contains(rmBoard));
+		//System.out.println("BoardDAO Deleted - " + myBoard.contains(rmBoard));
 		/////
 		
 		
@@ -213,8 +180,8 @@ public class BoardDAO {
 			return null;
 		}
 		Board[] boardlist = new Board[boards.size()];
-
-		System.arraycopy(boards, 0, boardlist, 0, boardlist.length);
+		
+		boards.toArray(boardlist);
 
 		return boardlist;
 	}

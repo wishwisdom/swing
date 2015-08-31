@@ -52,7 +52,7 @@ public class BoardDAO {
 			String[] split = b.split("==");
 			
 			boards.add(new Board(Integer.parseInt(split[0]),split[1],split[2],split[3],Integer.parseInt(split[4]),
-					Integer.parseInt(split[5]),split[6],Integer.parseInt(split[7]),split[8]));
+					Integer.parseInt(split[5]),split[6],Integer.parseInt(split[7]),split[8].replaceAll("!!!!","\n")));
 		}
 		
 		
@@ -99,12 +99,13 @@ public class BoardDAO {
 		return results;
 	}
 	
-	public boolean inesrt(Board t) {
+	public void inesrt(Board t) {
 		//Board를 저장한다
-		boards.add(t);
-		myBoard.add(t);
+		if(!boards.contains(t)){
+			boards.add(t);
+			myBoard.add(t);
+		}
 		
-		return true;
 	}
 	
 	public Board getBoard(int boardNum){

@@ -45,6 +45,8 @@ public class FileRelated{
 		/*static boolean ImageIO.write(RenderedImage im, 
                 String formatName,
                 File output)  throws IOException*/
+		if(srcPath.equals(desFile))
+			return;
 		File image = new File(srcPath);
 		if (!image.exists()) {
             System.out.println("file " + image + " does not exist");
@@ -54,7 +56,7 @@ public class FileRelated{
 		try {
 			bf = ImageIO.read(image);
 			//if(ImageIO.write(bf, srcPath.substring(srcPath.lastIndexOf(".")+1), new File("C:\\kosta\\JavaBasic\\GIT_INIT\\ExSwing"+"\\img\\"+desFile))){
-			if(ImageIO.write(bf, srcPath.substring(srcPath.lastIndexOf(".")+1), new File(String.valueOf(Status.get("BasePath"))+"\\img\\"+desFile))){
+			if(ImageIO.write(bf, srcPath.substring(srcPath.lastIndexOf(".")+1), new File(String.valueOf(Status.get("BasePath"))+"\\img"+desFile))){
 			
 				System.out.println("Wrote");
 			}else{
@@ -77,6 +79,7 @@ public class FileRelated{
 				Board[] boardList = bDao.getBoards();
 				for(Board b : boardList){
 					write.write(b.toString());
+					write.newLine();
 				}
 				
 			} catch (FileNotFoundException e) {

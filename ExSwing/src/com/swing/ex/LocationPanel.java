@@ -41,13 +41,13 @@ public class LocationPanel extends JPanel{
 	public LocationPanel(JFrame main){
 		this.main = main;
 		
-		
 		init();
 		
 	}
 	public void init(){
 		locatePanel = new JPanel();
 		setLayout(new FlowLayout());
+		Status.add("CurrentPanel", this);
 		initTopImage();
 		initLayout();
 	}

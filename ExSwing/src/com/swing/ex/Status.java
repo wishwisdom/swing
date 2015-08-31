@@ -16,6 +16,8 @@ public class Status {
 	
 	public final static String USER = "user";
 	public final static String LOCTION = "viewLocation";
+	
+	public final static String MODIFY = "¼öÁ¤";
 	//public final static int WRITEPPANEL = 3;
 	
 	private static Map<String, Object> values = new HashMap<String,Object>();

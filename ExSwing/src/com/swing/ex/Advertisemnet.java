@@ -51,7 +51,7 @@ public class Advertisemnet extends JPanel{
 	
 	public Advertisemnet(){
 		this(new String[] {
-				"yeonah1.jpg", "yeonah2.jpg","goods.gif"});
+				"ad1.jpg", "ad2.jpg","ad3.jpg","ad4.jpg","ad5.jpg"});
 		
 	}
 	

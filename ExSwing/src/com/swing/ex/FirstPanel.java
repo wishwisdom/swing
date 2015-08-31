@@ -74,7 +74,8 @@ public class FirstPanel extends JPanel implements ActionListener {
 			Status.add(Status.LOCTION, ((JButton)e.getSource()).getText());
 			System.out.println("Button: "+((JButton)e.getSource()).getText());
 			////nextPanel = (LocationPanel) Status.get("second");
-			
+			Status.add("CurrentPanel", self);
+			//
 			main.add(new LocationPanel(main), BorderLayout.CENTER);
 			/*nextPanel.init();
 			nextPanel.setVisible(true);

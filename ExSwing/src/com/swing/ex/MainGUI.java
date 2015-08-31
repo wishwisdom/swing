@@ -2,14 +2,18 @@ package com.swing.ex;
 
 import java.awt.BorderLayout;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.swing.login.TopMain;
 import com.swing.user.User;
 
 public class MainGUI extends JFrame {
 	private JPanel jp = new JPanel();
+	private JButton btnPrev;
+	private JButton btnNext;
 
 	private void LoginTest(){
 		Status.add(Status.USER, new User("test1","dskajf"));
@@ -24,12 +28,12 @@ public class MainGUI extends JFrame {
 		}
 
 		{
-			setLayout(new BorderLayout());
+			setLayout(new BorderLayout(5,5));
 			initHead();
 		}
 		// /----------------Main »ý¼º-------------------------//
 		{
-
+			Status.add("CurrentPanel", Status.get(Status.FIRSTPANEL));
 			add((JPanel) (Status.get(Status.FIRSTPANEL)), BorderLayout.CENTER);
 		}
 		// /----------------Main End-------------------------//
@@ -46,12 +50,9 @@ public class MainGUI extends JFrame {
 	}
 	
 	private void initHead(){
-		JPanel jpHead = new JPanel();
-		jpHead.add(new JLabel(((User) (Status.get("user"))).getId()));
-		jp.setSize(this.getWidth(), 80);
-
-		// North pading jpanel
+		JPanel jpHead = new TopMain(this);
 		add(jpHead, BorderLayout.NORTH);
+		
 	}
 
 	private void initStatus() {
@@ -69,11 +70,10 @@ public class MainGUI extends JFrame {
 		Status.add(Status.FIRSTPANEL, new FirstPanel(this));
 		//Status.add(Status.SECOUNTPANEL, new LocationPanel(this));
 		// Status.add(Status.DETAILPANEL, new DetailViewPanel(this));
-		// DetailView
 	}
 
 	public static void main(String[] args) {
-		SwingConsole.run(new MainGUI(), 700, 700);
+		SwingConsole.run(new MainGUI(), 800, 700);
 	}
 
 }

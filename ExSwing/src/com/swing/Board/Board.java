@@ -100,7 +100,7 @@ public class Board {
 	
 	@Override
 	public String toString(){
-		return ""+boardNum+" " + author +" "+ imagePath+" " + location +" "+goodCounts
-				+" " + badCounts +" "+makeTime+" "+ readingCounts+content + " "+ content;
+		return ""+boardNum+"==" + author +"=="+ imagePath+"==" + location +"=="+goodCounts
+				+"==" + badCounts +"=="+makeTime+"=="+ readingCounts+"=="+content.replaceAll("\n", "!!!!");
 	}
 }
